@@ -8,27 +8,39 @@ import * as express from 'express';
  */
 import ApiRoutes from './routes/dataRoute';
 
+/**
+ * Declare cors module
+ */
 import * as cors from 'cors';
 
+/**
+ * Declare body-parser module
+ */
 import * as bodyParser from 'body-parser';
 
 export default class Server {
   // Declare private variable to house express
   private _app: express.Express = express();
+
   constructor() {
+    // Call initializer function
     this.init();
   }
 
   init() {
-
-    this._app.use(cors());
     /**
- * Declaration of Express to use body-parser
- */
+     * Declaration of Express to use cors module
+     */
+    this._app.use(cors());
+
+    /**
+    * Declaration of Express to use body-parser
+    */
     this._app.use(bodyParser.urlencoded({
       extended: true
     }));
     this._app.use(bodyParser.json())
+
     /**
      * Declaration of Express to use Api Route at '/'
      */
